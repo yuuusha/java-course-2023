@@ -11,7 +11,7 @@ public final class Task6 {
     }
 
     @SuppressWarnings("MagicNumber")
-    public static int stepsOfK(int number) throws RuntimeException {
+    public static int stepsOfK(int number)  {
 
         if (number > 9999 || number < 1000) {
             throw new RuntimeException("Некорректный ввод: число не является четырехзначным");
@@ -22,7 +22,6 @@ public final class Task6 {
         }
 
         int workNumber = number;
-
         int steps = 0;
         while (workNumber != 6174) {
 

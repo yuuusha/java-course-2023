@@ -7,7 +7,7 @@ public final class Task5 {
     }
 
     @SuppressWarnings("MagicNumber")
-    public static boolean isPalindromeDescendant(int inputNumber) throws RuntimeException {
+    public static boolean isPalindromeDescendant(int inputNumber)  {
 
         if (inputNumber < 0) {
             throw new RuntimeException("Некорректный ввод: число отрицательное");
@@ -47,8 +47,7 @@ public final class Task5 {
         int sum;
         StringBuilder resultString = new StringBuilder();
         for (int i = 0; i < fixLengthString; i += 2) {
-            sum = Character.getNumericValue(stringNumber.charAt(i))
-                + Character.getNumericValue(stringNumber.charAt(i + 1));
+            sum = (stringNumber.charAt(i) - '0') + (stringNumber.charAt(i + 1) - '0');
             resultString.append(sum);
         }
 

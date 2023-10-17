@@ -1,7 +1,7 @@
 package edu.hw1;
 
 public final class Task8 {
-
+    private static final int BOARD_SIZE = 8;
     private static final int[][] SHIFTS = {
         {-2, -1},
         {-2, 1},
@@ -17,42 +17,41 @@ public final class Task8 {
 
     }
 
-    public static void checkIncorrectValue(int[][] board, int n) throws RuntimeException {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+    public static boolean checkIncorrectValue(int[][] board) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
                 if (board[i][j] != 1 && board[i][j] != 0) {
-                    throw new RuntimeException("Некорректный ввод: значение массива, отличное от 0 или 1");
+                    return false;
                 }
             }
         }
+        return true;
     }
 
-    public static boolean knightBoardCapture(int[][] board) throws RuntimeException {
-
-        final int n = 8;
+    public static boolean knightBoardCapture(int[][] board) {
 
         String lengthException = "Некорректный ввод: размерность массива не равна 8х8";
-        if (board.length != n) {
+        if (board.length != BOARD_SIZE) {
             throw new RuntimeException(lengthException);
-        } else {
-            for (int i = 0; i < n; i++) {
-                if (board[i].length != n) {
-                    throw new RuntimeException(lengthException);
-                }
+        }
+
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            if (board[i].length != BOARD_SIZE) {
+                throw new RuntimeException(lengthException);
             }
         }
 
-        checkIncorrectValue(board, n);
+        if (!checkIncorrectValue(board)) {
+            throw new RuntimeException("Некорректный ввод: значение массива, отличное от 0 или 1");
+        }
 
-        int shiftVer;
-        int shiftHor;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
                 if (board[i][j] == 1) {
                     for (int[] shift : SHIFTS) {
-                        shiftVer = i + shift[0];
-                        shiftHor = j + shift[1];
-                        if (shiftVer >= 0 && shiftVer < n && shiftHor >= 0 && shiftHor < n) {
+                        int shiftVer = i + shift[0];
+                        int shiftHor = j + shift[1];
+                        if (shiftVer >= 0 && shiftVer < BOARD_SIZE && shiftHor >= 0 && shiftHor < BOARD_SIZE) {
                             if (board[shiftVer][shiftHor] == 1) {
                                 return false;
                             }

@@ -6,7 +6,7 @@ public final class Task7 {
 
     }
 
-    public static int rotateLeft(int n, int shift) throws RuntimeException {
+    public static int rotateLeft(int n, int shift)  {
 
         if (n <= 0) {
             throw new RuntimeException("Некорректный ввод: число неположительное");
@@ -22,7 +22,7 @@ public final class Task7 {
         return Integer.parseInt(stringN.substring(fixedShift) + stringN.substring(0, fixedShift), 2);
     }
 
-    public static int rotateRight(int n, int shift) throws RuntimeException {
+    public static int rotateRight(int n, int shift)  {
 
         if (shift < 0) {
             return rotateLeft(n, Math.abs(shift));

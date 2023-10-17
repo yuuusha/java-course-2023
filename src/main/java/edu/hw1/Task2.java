@@ -9,11 +9,11 @@ public final class Task2 {
     @SuppressWarnings("MagicNumber")
     public static int countDigits(int number) {
 
-        int num = number;
-
-        if (num < 0) {
-            num = Math.abs(num);
+        if (number == Integer.MIN_VALUE) {
+            return 10;
         }
+
+        int num = Math.abs(number);
 
         if (num == 0) {
             return 1;
