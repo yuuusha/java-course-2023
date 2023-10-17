@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task6Test {
     @ParameterizedTest
@@ -13,7 +14,7 @@ public class Task6Test {
     @CsvSource({"6621, 5", "6554, 4", "1234, 3"})
     void fourDigitTest(int number, int expectedResult) {
         int res = Task6.stepsOfK(number);
-        assertThat(res).isEqualTo(expectedResult);
+        assertEquals(expectedResult, res);
     }
 
     @Test
@@ -38,7 +39,7 @@ public class Task6Test {
     @DisplayName("Разность Капрекара менее 1000")
     void containsZeroTest() {
         int res = Task6.stepsOfK(1000);
-        assertThat(res).isEqualTo(5);
+        assertEquals(5, res);
     }
 
     @Test

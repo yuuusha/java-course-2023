@@ -20,35 +20,35 @@ public class Task5Test {
     @DisplayName("Количество цифр четно - результат false")
     void evenFalseTest() {
         boolean res = Task5.isPalindromeDescendant(123456);
-        assertThat(res).isEqualTo(false);
+        assertThat(res).isFalse();
     }
 
     @Test
     @DisplayName("Количество цифр нечетно - результат true")
     void oddTrueTest() {
         boolean res = Task5.isPalindromeDescendant(134);
-        assertThat(res).isEqualTo(true);
+        assertThat(res).isTrue();
     }
 
     @Test
     @DisplayName("Количество цифр нечетно - результат false")
     void oddFalseTest() {
         boolean res = Task5.isPalindromeDescendant(233360146);
-        assertThat(res).isEqualTo(false);
+        assertThat(res).isFalse();
     }
 
     @Test
     @DisplayName("Число уже является палиндромом")
     void alreadyPalindromeTest() {
         boolean res = Task5.isPalindromeDescendant(11);
-        assertThat(res).isEqualTo(true);
+        assertThat(res).isTrue();
     }
 
     @Test
     @DisplayName("Число состоит из одной цифры")
     void digitTest() {
         boolean res = Task5.isPalindromeDescendant(1);
-        assertThat(res).isEqualTo(false);
+        assertThat(res).isFalse();
     }
 
     @Test
