@@ -4,8 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task1Test {
 
@@ -14,14 +15,14 @@ public class Task1Test {
     @CsvSource({"13:56, 836", "01:00, 60"})
     void secondsLessThan60Test(String time, int expectedResult) {
         int res = Task1.minutesToSeconds(time);
-        assertThat(res).isEqualTo(expectedResult);
+        assertEquals(expectedResult, res);
     }
 
     @Test
     @DisplayName("Секунд больше чем 60")
     void secondMoreThan60Test() {
         int res = Task1.minutesToSeconds("10:60");
-        assertThat(res).isEqualTo(-1);
+        assertEquals(-1, res);
     }
 
     @Test

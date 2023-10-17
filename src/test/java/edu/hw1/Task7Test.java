@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task7Test {
     @ParameterizedTest
@@ -13,42 +14,42 @@ public class Task7Test {
     @CsvSource({"16, 1, 1", "17, 2, 6"})
     void rotateLeftCorrectTest(int number, int shift, int expectedResult) {
         int res = Task7.rotateLeft(number, shift);
-        assertThat(res).isEqualTo(expectedResult);
+        assertEquals(expectedResult, res);
     }
 
     @Test
     @DisplayName("Поворот вправо положительного числа на положительный сдвиг")
     void rotateRightCorrectTest() {
         int res = Task7.rotateRight(8,1);
-        assertThat(res).isEqualTo(4);
+        assertEquals(4, res);
     }
 
     @Test
     @DisplayName("Поворот влево положительного числа на отрицательный сдвиг")
     void rotateLeftNegativeShiftTest() {
         int res = Task7.rotateLeft(8,-1);
-        assertThat(res).isEqualTo(4);
+        assertEquals(4, res);
     }
 
     @Test
     @DisplayName("Поворот вправо положительного числа на отрицательный сдвиг")
     void rotateRightNegativeShiftTest() {
         int res = Task7.rotateRight(8,-1);
-        assertThat(res).isEqualTo(1);
+        assertEquals(1, res);
     }
 
     @Test
     @DisplayName("Поворот влево положительного числа на сдвиг, больший длины числа")
     void rotateLeftLongShiftTest() {
         int res = Task7.rotateLeft(8,20);
-        assertThat(res).isEqualTo(8);
+        assertEquals(8, res);
     }
 
     @Test
     @DisplayName("Поворот вправо положительного числа на сдвиг, больший длины числа")
     void rotateRightLongShiftTest() {
         int res = Task7.rotateRight(8,20);
-        assertThat(res).isEqualTo(8);
+        assertEquals(8, res);
     }
 
     @Test

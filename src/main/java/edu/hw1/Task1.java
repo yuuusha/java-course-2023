@@ -7,7 +7,7 @@ public final class Task1 {
     }
 
     @SuppressWarnings("MagicNumber")
-    public static int minutesToSeconds(String inputString) throws RuntimeException {
+    public static int minutesToSeconds(String inputString)  {
 
         if (!inputString.contains(":")) {
             throw new RuntimeException("Некорректный ввод: отсутствие знака двоеточия");
@@ -26,7 +26,7 @@ public final class Task1 {
             minutes = Integer.parseInt(minutesAndSeconds[0]);
             seconds = Integer.parseInt(minutesAndSeconds[1]);
         } catch (NumberFormatException exception) {
-            throw new NumberFormatException("Некорректный ввод: невозможно обработать ввод");
+            throw new RuntimeException("Некорректный ввод: невозможно обработать ввод", exception);
         }
 
         if (seconds >= 60) {
