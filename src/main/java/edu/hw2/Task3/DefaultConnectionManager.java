@@ -4,7 +4,7 @@ public class DefaultConnectionManager implements ConnectionManager {
 
     @Override
     public Connection getConnection() {
-        if (RandomSeed.random.nextInt(2) == 0) {
+        if (RandomSeed.isAttemptOK(2)) {
             return new FaultyConnection();
         }
         return new StableConnection();

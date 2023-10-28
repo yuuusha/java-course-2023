@@ -9,9 +9,7 @@ public class FaultyConnection implements Connection {
 
     @Override
     public void execute(String command) {
-        LOGGER.info("Соединение открыто");
-
-        if (RandomSeed.random.nextInt(2) == 0) {
+        if (RandomSeed.isAttemptOK(2)) {
             throw new ConnectionException("Проблемное соединение");
         }
     }

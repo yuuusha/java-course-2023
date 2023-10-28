@@ -11,8 +11,8 @@ public class Task2Test {
 
     static Arguments[] rectangles() {
         return new Arguments[]{
-            Arguments.of(new Rectangle()),
-            Arguments.of(new Square())
+            Arguments.of(new Rectangle(1, 1)),
+            Arguments.of(new Square(1, 1))
         };
     }
 

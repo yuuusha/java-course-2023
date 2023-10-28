@@ -19,17 +19,26 @@ public final class PopularCommandExecutor {
 
     void tryExecute(String command) {
 
-        for (int i = 0; i < maxAttempts; i++) {
-            try (Connection connection = manager.getConnection()) {
+        Connection connection = manager.getConnection();
+        LOGGER.info("Соединение открыто");
+        int i = 0;
+        while (i < maxAttempts) {
+            try {
                 connection.execute(command);
                 LOGGER.info("Успешное выполнение");
-                return;
+                break;
             } catch (ConnectionException exception) {
-                LOGGER.info(exception.getMessage() + ", повторное подключение...");
-            } catch (Exception e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("Повторное подключение:", exception);
             }
+            i++;
         }
-        throw new ConnectionException("Соединение прервано, превышено количество попыток");
+        try {
+            connection.close();
+        } catch (Exception e) {
+            LOGGER.info(e.getMessage());
+        }
+        if (i == maxAttempts) {
+            throw new ConnectionException("Соединение прервано, превышено количество попыток");
+        }
     }
 }
