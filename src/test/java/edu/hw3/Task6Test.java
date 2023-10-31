@@ -19,7 +19,7 @@ public class Task6Test {
         q.add(new Stock("C", 200));
         q.add(new Stock("D", 5));
 
-        assertEquals(q.mostValuableStock(), new Stock("C", 200));
+        assertEquals(new Stock("C", 200), q.mostValuableStock());
     }
 
     @Test

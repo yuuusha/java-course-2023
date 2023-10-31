@@ -10,6 +10,12 @@ public final class Task5 {
 
     }
 
+    private static final Comparator<Contact> ASC = Comparator
+        .comparing(Contact::surname)
+        .thenComparing(Contact::name);
+
+    private static final Comparator<Contact> DESC = ASC.reversed();
+
     public static List<Contact> parseContacts(String[] names, String typeSort) {
         List<Contact> resultList = new ArrayList<>();
 
@@ -24,9 +30,9 @@ public final class Task5 {
             }
 
             if (typeSort.equals("ASC")) {
-                resultList.sort(Comparator.naturalOrder());
+                resultList.sort(ASC);
             } else if (typeSort.equals("DESC")) {
-                resultList.sort(Comparator.reverseOrder());
+                resultList.sort(DESC);
             } else {
                 throw new RuntimeException("Неверно указан порядок сортировки");
             }
