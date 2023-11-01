@@ -1,102 +1,22 @@
 package edu.project1;
 
-import org.jetbrains.annotations.NotNull;
+public enum GuessResult {
+    WIN("Вы выиграли!"),
+    DEFEAT("Вы проиграли!"),
+    SUCCESSFUL_GUESS("В яблочко!"),
+    FAILED_GUESS("Промах");
 
-public interface GuessResult {
-
-    char[] state();
-
-    int attempt();
-
-    int maxAttempts();
-
-    @NotNull String message();
-
-    record Defeat(char[] state, int attempt, int maxAttempts) implements GuessResult {
-        @Override
-        public char[] state() {
-            return state;
-        }
-
-        @Override
-        public int attempt() {
-            return attempt;
-        }
-
-        @Override
-        public int maxAttempts() {
-            return maxAttempts;
-        }
-
-        @Override
-        public @NotNull String message() {
-            return "Вы проиграли!";
-        }
+    String message;
+    GuessResult(String s) {
+        message = s;
     }
 
-    record Win(char[] state, int attempt, int maxAttempts) implements GuessResult {
-        @Override
-        public char[] state() {
-            return state;
-        }
-
-        @Override
-        public int attempt() {
-            return attempt;
-        }
-
-        @Override
-        public int maxAttempts() {
-            return maxAttempts;
-        }
-
-        @Override
-        public @NotNull String message() {
-            return "Вы выиграли!";
-        }
+    public String getMessage() {
+        return message;
     }
 
-    record SuccessfulGuess(char[] state, int attempt, int maxAttempts) implements GuessResult {
-        @Override
-        public char[] state() {
-            return state;
-        }
-
-        @Override
-        public int attempt() {
-            return attempt;
-        }
-
-        @Override
-        public int maxAttempts() {
-            return maxAttempts;
-        }
-
-        @Override
-        public @NotNull String message() {
-            return "В яблочко!";
-        }
-    }
-
-    record FailedGuess(char[] state, int attempt, int maxAttempts) implements GuessResult {
-        @Override
-        public char[] state() {
-            return state;
-        }
-
-        @Override
-        public int attempt() {
-            return attempt;
-        }
-
-        @Override
-        public int maxAttempts() {
-            return maxAttempts;
-        }
-
-        @Override
-        public @NotNull String message() {
-            return "Промах, ошибок " + attempt() + " из " + maxAttempts() + ".";
-        }
+    public static void setAttempts(int currentAttempt, int maxAttempts) {
+        FAILED_GUESS.message = String.format("Промах, ошибок %d из %d", currentAttempt, maxAttempts);
     }
 }
+
