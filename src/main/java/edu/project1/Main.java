@@ -3,6 +3,7 @@ package edu.project1;
 
 public final class Main {
 
+
     private Main() {
     }
 
