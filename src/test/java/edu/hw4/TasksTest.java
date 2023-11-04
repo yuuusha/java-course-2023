@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,7 +42,7 @@ public class TasksTest {
     @DisplayName("Тест 1 задания")
     void Task1Test() {
         List<Animal> expectedResult = new ArrayList<>(List.of(FISH, BIRD, CAT1, SPIDER, CAT, DOG, DOG1));
-        List<Animal> res = t.Task1();
+        List<Animal> res = t.task1();
         assertEquals(expectedResult, res);
     }
 
@@ -49,14 +50,14 @@ public class TasksTest {
     @DisplayName("Тест 2 задания")
     void Task2Test() {
         List<Animal> expectedResult = new ArrayList<>(List.of(DOG1, DOG, CAT, CAT1));
-        List<Animal> res = t.Task2(4);
+        List<Animal> res = t.task2(4);
         assertEquals(expectedResult, res);
     }
 
     @Test
     @DisplayName("Тест 3 задания")
     void Task3Test() {
-        Map<Animal.Type, Integer> res = t.Task3();
+        Map<Animal.Type, Integer> res = t.task3();
         Map<Animal.Type, Integer> expectedResult = new HashMap<>(Map.of(
             Animal.Type.CAT, 2,
             Animal.Type.SPIDER, 1,
@@ -69,21 +70,21 @@ public class TasksTest {
     @Test
     @DisplayName("Тест 4 задания")
     void Task4Test() {
-        Animal res = t.Task4();
+        Animal res = t.task4();
         assertEquals(CAT1, res);
     }
 
     @Test
     @DisplayName("Тест 5 задания")
     void Task5Test() {
-        Animal.Sex res = t.Task5();
+        Animal.Sex res = t.task5();
         assertEquals(Animal.Sex.M, res);
     }
 
     @Test
     @DisplayName("Тест 6 задания")
     void Task6Test() {
-        Map<Animal.Type, Animal> res = t.Task6();
+        Map<Animal.Type, Animal> res = t.task6();
         Map<Animal.Type, Animal> expectedResult = new HashMap<>(Map.of(
             Animal.Type.CAT, CAT,
             Animal.Type.SPIDER, SPIDER,
@@ -96,28 +97,28 @@ public class TasksTest {
     @Test
     @DisplayName("Тест 7 задания")
     void Task7Test() {
-        Animal res = t.Task7(3);
+        Animal res = t.task7(3);
         assertEquals(DOG, res);
     }
 
     @Test
     @DisplayName("Тест 8 задания")
     void Task8Test() {
-        Optional<Animal> res = t.Task8(55);
+        Optional<Animal> res = t.task8(55);
         assertEquals(CAT1, res.get());
     }
 
     @Test
     @DisplayName("Тест 9 задания")
     void Task9Test() {
-        int res = t.Task9();
+        int res = t.task9();
         assertEquals(26, res);
     }
 
     @Test
     @DisplayName("Тест 10 задания")
     void Task10Test() {
-        List<Animal> res = t.Task10();
+        List<Animal> res = t.task10();
         List<Animal> expectedResult = new ArrayList<>(List.of(CAT, BIRD, FISH, SPIDER, CAT1, DOG1));
         assertEquals(expectedResult, res);
     }
@@ -125,7 +126,7 @@ public class TasksTest {
     @Test
     @DisplayName("Тест 11 задания")
     void Task11Test() {
-        List<Animal> res = t.Task11();
+        List<Animal> res = t.task11();
         List<Animal> expectedResult = new ArrayList<>(List.of(DOG1));
         assertEquals(expectedResult, res);
     }
@@ -133,14 +134,14 @@ public class TasksTest {
     @Test
     @DisplayName("Тест 12 задания")
     void Task12Test() {
-        Long res = t.Task12();
+        Long res = t.task12();
         assertEquals(0, res);
     }
 
     @Test
     @DisplayName("Тест 13 задания")
     void Task13Test() {
-        List<Animal> res = t.Task13();
+        List<Animal> res = t.task13();
         List<Animal> expectedResult = new ArrayList<>();
         assertEquals(expectedResult, res);
     }
@@ -148,14 +149,14 @@ public class TasksTest {
     @Test
     @DisplayName("Тест 14 задания")
     void Task14Test() {
-        boolean res = t.Task14(110);
+        boolean res = t.task14(110);
         assertTrue(res);
     }
 
     @Test
     @DisplayName("Тест 15 задания")
     void Task15Test() {
-        Map<Animal.Type, Integer> res = t.Task15(2, 7);
+        Map<Animal.Type, Integer> res = t.task15(2, 7);
         Map<Animal.Type, Integer> expectedResult = new HashMap<>(Map.of(
             Animal.Type.CAT, 8,
             Animal.Type.SPIDER, 2,
@@ -168,7 +169,7 @@ public class TasksTest {
     @Test
     @DisplayName("Тест 16 задания")
     void Task16Test() {
-        List<Animal> res = t.Task16();
+        List<Animal> res = t.task16();
         List<Animal> expectedResult = new ArrayList<>(List.of(CAT1, CAT, DOG, DOG1, BIRD, FISH, SPIDER));
         assertEquals(expectedResult, res);
     }
@@ -176,7 +177,7 @@ public class TasksTest {
     @Test
     @DisplayName("Тест 17 задания")
     void Task17Test() {
-        boolean res = t.Task17();
+        boolean res = t.task17();
         assertFalse(res);
     }
 
@@ -188,7 +189,7 @@ public class TasksTest {
             new ArrayList<>(List.of(CAT, DOG))
         ));
 
-        Animal res = t.Task18(lists);
+        Animal res = t.task18(lists);
         assertEquals(FISH, res);
     }
 
@@ -199,7 +200,7 @@ public class TasksTest {
             new Animal("К", Animal.Type.CAT, Animal.Sex.F, -1, -60, -7, false);
         Tasks t1 = new Tasks(List.of(CAT, DOG, CAT2));
 
-        Map<String, Set<ValidationError>> res = t1.Task19();
+        Map<String, TreeSet<ValidationError>> res = t1.task19();
         Map<String, Set<ValidationError>> expectedResult = new HashMap<>(Map.of(
             CAT2.name(), Set.of(ValidationError.NAME_ERROR,
                 ValidationError.AGE_ERROR,
@@ -216,13 +217,13 @@ public class TasksTest {
             new Animal("К", Animal.Type.CAT, Animal.Sex.F, -1, -60, -7, false);
         Tasks t1 = new Tasks(List.of(CAT, DOG, CAT2));
 
-        Map<String, String> res = t1.Task20();
+        Map<String, String> res = t1.task20();
         Map<String, String> expectedResult = new HashMap<>(Map.of(
-            CAT2.name(),
-            ValidationError.NAME_ERROR.getMessage() + ", " +
-            ValidationError.WEIGHT_ERROR.getMessage() +  ", " +
-            ValidationError.AGE_ERROR.getMessage() + ", " +
-                ValidationError.HEIGHT_ERROR.getMessage()));
+            CAT2.name(), String.join(", ", new TreeSet<>(Set.of(
+                        ValidationError.NAME_ERROR.getMessage(),
+                        ValidationError.WEIGHT_ERROR.getMessage(),
+                        ValidationError.AGE_ERROR.getMessage(),
+                        ValidationError.HEIGHT_ERROR.getMessage())))));
 
         assertEquals(expectedResult, res);
     }

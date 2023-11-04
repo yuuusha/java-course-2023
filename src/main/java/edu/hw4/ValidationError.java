@@ -1,10 +1,10 @@
 package edu.hw4;
 
 public enum ValidationError {
-    NAME_ERROR("Имя животного состоит из 1 буквы"),
+    WEIGHT_ERROR("Вес животного отрицательный"),
     AGE_ERROR("Возраст животного отрицательный"),
-    HEIGHT_ERROR("Рост животного отрицательный"),
-    WEIGHT_ERROR("Вес животного отрицательный");
+    NAME_ERROR("Имя животного состоит из 1 буквы"),
+    HEIGHT_ERROR("Рост животного отрицательный");
 
     final String message;
     ValidationError(String s) {

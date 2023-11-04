@@ -2,11 +2,10 @@ package edu.hw4;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class Tasks {
@@ -16,31 +15,31 @@ public class Tasks {
         this.animals = new ArrayList<>(animals);
     }
 
-    public List<Animal> Task1() {
+    public List<Animal> task1() {
         return animals.stream()
             .sorted(Comparator.comparingInt(Animal::height))
             .toList();
     }
 
-    public List<Animal> Task2(int k) {
+    public List<Animal> task2(int k) {
         return animals.stream()
             .sorted(Comparator.comparingInt(Animal::weight).reversed())
             .limit(k)
             .toList();
     }
 
-    public Map<Animal.Type, Integer>Task3() {
+    public Map<Animal.Type, Integer> task3() {
         return animals.stream()
             .collect(Collectors.groupingBy(Animal::type, Collectors.summingInt(animal -> 1)));
     }
 
-    public Animal Task4() {
+    public Animal task4() {
         return animals.stream()
             .max(Comparator.comparingInt(animal -> animal.name().length()))
             .orElse(null);
     }
 
-    public Animal.Sex Task5() {
+    public Animal.Sex task5() {
         Map<Animal.Sex, Long> sexCount = animals.stream()
             .collect(Collectors.groupingBy(Animal::sex, Collectors.counting()));
 
@@ -53,7 +52,7 @@ public class Tasks {
         return Animal.Sex.F;
     }
 
-    public Map<Animal.Type, Animal> Task6() {
+    public Map<Animal.Type, Animal> task6() {
         return animals.stream()
             .collect(Collectors.toMap(
                 Animal::type,
@@ -62,7 +61,7 @@ public class Tasks {
             ));
     }
 
-    public Animal Task7(int k) {
+    public Animal task7(int k) {
         return animals.stream()
             .sorted(Comparator.comparingInt(Animal::age).reversed())
             .skip(k - 1)
@@ -70,48 +69,49 @@ public class Tasks {
             .orElse(null);
     }
 
-    public Optional<Animal> Task8(int k) {
+    public Optional<Animal> task8(int k) {
         return animals.stream()
             .filter(animal -> animal.height() < k)
             .max(Comparator.comparingInt(Animal::weight));
     }
 
-    public int Task9() {
+    public int task9() {
         return animals.stream()
             .mapToInt(Animal::paws)
             .sum();
     }
 
-    public List<Animal> Task10() {
+    public List<Animal> task10() {
         return animals.stream()
             .filter(animal -> animal.age() != animal.paws())
             .toList();
     }
 
-    public List<Animal> Task11() {
+    @SuppressWarnings("MagicNumber")
+    public List<Animal> task11() {
         return animals.stream()
             .filter(animal -> animal.bites() && animal.height() > 100)
             .toList();
     }
 
-    public Long Task12() {
+    public Long task12() {
         return animals.stream()
             .filter(animal -> animal.weight() > animal.height())
             .count();
     }
 
-    public List<Animal> Task13() {
+    public List<Animal> task13() {
         return animals.stream()
             .filter(animal -> animal.name().split(" ").length > 2)
             .toList();
     }
 
-    public boolean Task14(int k) {
+    public boolean task14(int k) {
         return animals.stream()
             .anyMatch(animal -> animal.type() == Animal.Type.DOG && animal.height() > k);
     }
 
-    public Map<Animal.Type, Integer> Task15(int k, int l) {
+    public Map<Animal.Type, Integer> task15(int k, int l) {
         Map<Animal.Type, Integer> result = animals.stream()
             .filter(animal -> animal.age() >= k && animal.age() <= l)
             .collect(Collectors.groupingBy(Animal::type, Collectors.summingInt(Animal::weight)));
@@ -123,7 +123,7 @@ public class Tasks {
         return result;
     }
 
-    public List<Animal> Task16() {
+    public List<Animal> task16() {
         return animals.stream()
             .sorted(Comparator.comparing(Animal::type)
                 .thenComparing(Animal::sex)
@@ -131,7 +131,7 @@ public class Tasks {
             .toList();
     }
 
-    public boolean Task17() {
+    public boolean task17() {
         long spiderBites = animals.stream()
             .filter(animal -> animal.type() == Animal.Type.SPIDER && animal.bites())
             .count();
@@ -141,7 +141,7 @@ public class Tasks {
         return spiderBites > dogBites;
     }
 
-    public Animal Task18(List<List<Animal>> listsOfAnimals) {
+    public Animal task18(List<List<Animal>> listsOfAnimals) {
 
         List<Animal> concatList = new ArrayList<>();
         for (var list: listsOfAnimals) {
@@ -154,17 +154,17 @@ public class Tasks {
             .orElse(null);
     }
 
-    public Map<String, Set<ValidationError>> Task19() {
+    public Map<String, TreeSet<ValidationError>> task19() {
         return animals.stream()
             .filter(animal ->
-                animal.name().length() < 2 ||
-                animal.age() < 0 ||
-                animal.height() < 0 ||
-                animal.weight() < 0)
+                animal.name().length() < 2
+                    || animal.age() < 0
+                    || animal.height() < 0
+                    || animal.weight() < 0)
             .collect(Collectors.toMap(
                 Animal::name,
                 animal -> {
-                    Set<ValidationError> errors = new HashSet<>();
+                    TreeSet<ValidationError> errors = new TreeSet<>();
                     if (animal.name().length() < 2) {
                         errors.add(ValidationError.NAME_ERROR);
                     }
@@ -182,8 +182,8 @@ public class Tasks {
             ));
     }
 
-    public Map<String, String> Task20() {
-        Map<String, Set<ValidationError>> map = Task19();
+    public Map<String, String> task20() {
+        Map<String, TreeSet<ValidationError>> map = task19();
 
         return map.entrySet().stream()
             .collect(Collectors.toMap(
