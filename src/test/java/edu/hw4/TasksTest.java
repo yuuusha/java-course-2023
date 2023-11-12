@@ -27,7 +27,7 @@ public class TasksTest {
     private final Animal SPIDER =
         new Animal("Пича", Animal.Type.SPIDER, Animal.Sex.M, 2, 50, 2, true);
     private final Animal CAT1 =
-        new Animal("Мурмурка", Animal.Type.CAT, Animal.Sex.M, 3, 30, 3, true);
+        new Animal("Мурмурка Мур Мур", Animal.Type.CAT, Animal.Sex.M, 3, 30, 3, true);
     private final Animal DOG1 =
         new Animal("Кусака", Animal.Type.DOG, Animal.Sex.F, 8, 120, 13, true);
 
@@ -142,7 +142,7 @@ public class TasksTest {
     @DisplayName("Тест 13 задания")
     void Task13Test() {
         List<Animal> res = t.task13();
-        List<Animal> expectedResult = new ArrayList<>();
+        List<Animal> expectedResult = new ArrayList<>(List.of(CAT1));
         assertEquals(expectedResult, res);
     }
 

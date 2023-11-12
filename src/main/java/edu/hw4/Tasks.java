@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeSet;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Tasks {
@@ -56,8 +58,8 @@ public class Tasks {
         return animals.stream()
             .collect(Collectors.toMap(
                 Animal::type,
-                animal -> animal,
-                (existing, replacement) -> existing.weight() > replacement.weight() ? existing : replacement
+                Function.identity(),
+                BinaryOperator.maxBy(Comparator.comparingDouble(Animal::weight))
             ));
     }
 
@@ -87,10 +89,10 @@ public class Tasks {
             .toList();
     }
 
-    @SuppressWarnings("MagicNumber")
     public List<Animal> task11() {
+        final int k = 100;
         return animals.stream()
-            .filter(animal -> animal.bites() && animal.height() > 100)
+            .filter(animal -> animal.bites() && animal.height() > k)
             .toList();
     }
 
@@ -102,7 +104,7 @@ public class Tasks {
 
     public List<Animal> task13() {
         return animals.stream()
-            .filter(animal -> animal.name().split(" ").length > 2)
+            .filter(animal -> animal.name().trim().split(" ").length > 2)
             .toList();
     }
 
@@ -142,13 +144,8 @@ public class Tasks {
     }
 
     public Animal task18(List<List<Animal>> listsOfAnimals) {
-
-        List<Animal> concatList = new ArrayList<>();
-        for (var list: listsOfAnimals) {
-            concatList.addAll(list);
-        }
-
-        return concatList.stream()
+        return listsOfAnimals.stream()
+            .flatMap(List::stream)
             .filter(animal -> animal.type() == Animal.Type.FISH)
             .max(Comparator.comparingInt(Animal::weight))
             .orElse(null);
