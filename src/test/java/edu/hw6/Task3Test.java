@@ -34,8 +34,8 @@ public class Task3Test {
 
         List<Path> expectedResult = new ArrayList<>(List.of(
             Paths.get("src/main/java/edu/hw6/Task3/files/file-3.png"),
-            Paths.get("src/main/java/edu/hw6/Task3/files/file1.txt"),
-            Paths.get("src/main/java/edu/hw6/Task3/files/file2.png" ))
+            Paths.get("src/main/java/edu/hw6/Task3/files/file2.png" ),
+            Paths.get("src/main/java/edu/hw6/Task3/files/file1.txt"))
         );
 
         assertEquals(expectedResult, res);
