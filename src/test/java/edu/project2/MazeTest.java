@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MazeTest {
 
     @Test
-    @DisplayName("Отрисовка лабиринта")
-    void printMazeTest() {
+    @DisplayName("Отрисовка лабиринта RecursiveBacktracking")
+    void printMazeRecursiveBacktrackingTest() {
         RandomSeed.setSeed(5535);
         MazeGenerator mazeGenerator = new RecursiveBacktracking();
         Maze maze = mazeGenerator.generate(9, 17);
@@ -32,8 +32,8 @@ public class MazeTest {
     }
 
     @Test
-    @DisplayName("Отрисовка пути")
-    void printPathTest() {
+    @DisplayName("Отрисовка пути RecursiveBacktracking")
+    void printPathRecursiveBacktrackingTest() {
         RandomSeed.setSeed(5535);
         MazeGenerator mazeGenerator = new RecursiveBacktracking();
         Maze maze = mazeGenerator.generate(9, 17);
@@ -52,6 +52,55 @@ public class MazeTest {
             """;
 
         Solver findPath = new RecursiveBacktrackingPath();
+        List<Coordinate> path =
+            findPath.solve(maze, new Coordinate(1, 1), new Coordinate(maze.getHeight() - 2, maze.getWidth() - 2));
+
+        assertEquals(res, renderer.render(maze, path));
+    }
+
+    @Test
+    @DisplayName("Отрисовка лабиринта Breadth")
+    void printMazeRecursiveBreadthTest() {
+        RandomSeed.setSeed(5535);
+        MazeGenerator mazeGenerator = new Breadth();
+        Maze maze = mazeGenerator.generate(9, 17);
+        Renderer renderer = new RendererConsole();
+
+        String res = """
+            █████████████████
+            █       █ █ █   █
+            █ █ █████ █ █ ███
+            █ █             █
+            ███ █████ █████ █
+            █   █ █       █ █
+            █ █ █ █ █ █ █ ███
+            █ █   █ █ █ █   █
+            █████████████████
+            """;
+        assertEquals(res, renderer.render(maze));
+    }
+
+    @Test
+    @DisplayName("Отрисовка пути Breadth")
+    void printPathRecursiveBreadthTest() {
+        RandomSeed.setSeed(5535);
+        MazeGenerator mazeGenerator = new Breadth();
+        Maze maze = mazeGenerator.generate(9, 17);
+        Renderer renderer = new RendererConsole();
+
+        String res = """
+            █████████████████
+            █...    █ █ █   █
+            █ █.█████ █ █ ███
+            █ █.......      █
+            ███ █████.█████ █
+            █   █ █  .....█ █
+            █ █ █ █ █ █ █.███
+            █ █   █ █ █ █...█
+            █████████████████
+            """;
+
+        Solver findPath = new BreadthPath();
         List<Coordinate> path =
             findPath.solve(maze, new Coordinate(1, 1), new Coordinate(maze.getHeight() - 2, maze.getWidth() - 2));
 
