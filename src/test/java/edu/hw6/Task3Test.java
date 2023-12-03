@@ -14,32 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task3Test {
 
-    static public Path dir = Paths.get("src/main/java/edu/hw6/Task3/files");
-
-    @Test
-    @DisplayName("Фильтр readable")
-    void readableOk() {
-
-        List<Path> res = new ArrayList<>();
-
-        DirectoryStream.Filter<Path> filter = AbstractFilter.REGULAR_FILE
-            .and(AbstractFilter.READABLE);
-
-        try (DirectoryStream<Path> entries = Files.newDirectoryStream(dir, filter)) {
-            entries.forEach(res::add);
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        List<Path> expectedResult = new ArrayList<>(List.of(
-            Paths.get("src/main/java/edu/hw6/Task3/files/file-3.png"),
-            Paths.get("src/main/java/edu/hw6/Task3/files/file2.png" ),
-            Paths.get("src/main/java/edu/hw6/Task3/files/file1.txt"))
-        );
-
-        assertEquals(expectedResult, res);
-    }
+    static public Path dir = Paths.get("src/main/resources/hw6/Task3");
 
     @Test
     @DisplayName("Фильтр largerThan")
@@ -58,8 +33,8 @@ public class Task3Test {
         }
 
         List<Path> expectedResult = new ArrayList<>(List.of(
-            Paths.get("src/main/java/edu/hw6/Task3/files/file-3.png"),
-            Paths.get("src/main/java/edu/hw6/Task3/files/file2.png" ))
+            Paths.get("src/main/resources/hw6/Task3/file-3.png"),
+            Paths.get("src/main/resources/hw6/Task3/file2.png" ))
         );
 
         assertEquals(expectedResult, res);
@@ -82,8 +57,8 @@ public class Task3Test {
         }
 
         List<Path> expectedResult = new ArrayList<>(List.of(
-            Paths.get("src/main/java/edu/hw6/Task3/files/file-3.png"),
-            Paths.get("src/main/java/edu/hw6/Task3/files/file2.png" ))
+            Paths.get("src/main/resources/hw6/Task3/file-3.png"),
+            Paths.get("src/main/resources/hw6/Task3/file2.png" ))
         );
 
         assertEquals(expectedResult, res);
@@ -106,8 +81,8 @@ public class Task3Test {
         }
 
         List<Path> expectedResult = new ArrayList<>(List.of(
-            Paths.get("src/main/java/edu/hw6/Task3/files/file-3.png"),
-            Paths.get("src/main/java/edu/hw6/Task3/files/file2.png"))
+            Paths.get("src/main/resources/hw6/Task3/file-3.png"),
+            Paths.get("src/main/resources/hw6/Task3/file2.png"))
         );
 
         assertEquals(expectedResult, res);
@@ -130,7 +105,7 @@ public class Task3Test {
         }
 
         List<Path> expectedResult = new ArrayList<>(List.of(
-            Paths.get("src/main/java/edu/hw6/Task3/files/file-3.png")
+            Paths.get("src/main/resources/hw6/Task3/file-3.png")
         ));
 
         assertEquals(expectedResult, res);

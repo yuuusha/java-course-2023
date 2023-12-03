@@ -16,8 +16,8 @@ public class Task2Test {
     @Test
     @DisplayName("Создание копии")
     void cloneFileTest() {
-        Path filePath = Paths.get("src/main/java/edu/hw6/Task2/files/Tinkoff Bank Biggest Secret.txt");
-        Path resultPath = Paths.get("src/main/java/edu/hw6/Task2/files/Tinkoff Bank Biggest Secret — копия (3).txt");
+        Path filePath = Paths.get("src/main/resources/hw6/Task2/Tinkoff Bank Biggest Secret.txt");
+        Path resultPath = Paths.get("src/main/resources/hw6/Task2/Tinkoff Bank Biggest Secret — копия (3).txt");
 
         CloneFile.cloneFile(filePath);
 
@@ -27,7 +27,7 @@ public class Task2Test {
     @Test
     @DisplayName("Файл не существует")
     void fileNotExistTest() {
-        Path filePath = Paths.get("src/main/java/edu/hw6/Task2/files/file.txt");
+        Path filePath = Paths.get("src/main/resources/hw6/Task2/file.txt");
 
         Throwable thrown = catchThrowable(() -> {
             CloneFile.cloneFile(filePath);

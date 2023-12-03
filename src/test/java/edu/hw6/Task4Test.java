@@ -16,7 +16,7 @@ public class Task4Test {
     @Test
     @DisplayName("Создание файла")
     void createFile() {
-        Path path = Path.of("src/main/java/edu/hw6/Task4/files/file.txt");
+        Path path = Path.of("src/main/resources/hw6/Task4/file.txt");
         String string = "Programming is learned by writing programs. ― Brian Kernighan";
         OutputStreamManager.printToFile(path, string);
 
@@ -26,7 +26,7 @@ public class Task4Test {
     @Test
     @DisplayName("Чтение из файла")
     void readFromFile() {
-        Path path = Path.of("src/main/java/edu/hw6/Task4/files/file.txt");
+        Path path = Path.of("src/main/resources/hw6/Task4/file.txt");
 
         StringBuilder result = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(path.toString()))) {

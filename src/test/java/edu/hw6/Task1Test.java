@@ -16,32 +16,19 @@ public class Task1Test {
     @Test
     @DisplayName("Создание файла")
     void fileCreateTest()  {
-        DiskMap diskMap = new DiskMap();
-        diskMap.dataMap.put("key1", "value1");
-        diskMap.dataMap.put("key2", "value2");
+        DiskMap diskMap = new DiskMap("src/main/resources/hw6/Task1/file.txt");
+        diskMap.put("key1", "value1");
+        diskMap.put("key2", "value2");
 
-        Path filePath = Paths.get("src/main/java/edu/hw6/Task1/files/file.txt");
-
-        diskMap.saveToFile(filePath);
-
-        assertTrue(Files.exists(filePath));
+        assertTrue(Files.exists(Path.of("src/main/resources/hw6/Task1/file.txt")));
     }
 
     @Test
     @DisplayName("Загрузка из файла")
     void uploadTest()  {
-        Path filePath = Paths.get("src/main/java/edu/hw6/Task1/files/file.txt");
-
-        DiskMap diskMap = new DiskMap(filePath);
-
-        List<String> data = new ArrayList<>();
-
-        for (var x : diskMap.dataMap.entrySet()) {
-            data.add(x.getKey() + ":" + x.getValue());
-        }
-
-        List<String> expectedResult = new ArrayList<>(List.of("key1:value1", "key2:value2"));
-        assertEquals(expectedResult, data);
+        DiskMap diskMap = new DiskMap("src/main/resources/hw6/Task1/file.txt");
+        assertEquals(diskMap.get("key1"), "value1");
+        assertEquals(diskMap.get("key2"), "value2");
     }
 
 }
