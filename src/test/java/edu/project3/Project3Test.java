@@ -10,7 +10,7 @@ public class Project3Test {
     @Test
     @DisplayName("Markdown вывод")
     void markdownTest() {
-        String[] args = {"--path", "src/main/java/edu/project3/logs/logs.txt"};
+        String[] args = {"--path", "src/main/resources/project3/logs/logs.txt"};
         Params params = new Params(args);
         Stream<LogRecord> logRecordStream = StreamManager.createStream(params);
         Stats stats = new Stats(logRecordStream, params);
@@ -64,7 +64,7 @@ public class Project3Test {
     @Test
     @DisplayName("Adoc вывод")
     void adocTest() {
-        String[] args = {"--path", "src/main/java/edu/project3/logs/logs.txt"};
+        String[] args = {"--path", "src/main/resources/project3/logs/logs.txt"};
         Params params = new Params(args);
         Stream<LogRecord> logRecordStream = StreamManager.createStream(params);
         Stats stats = new Stats(logRecordStream, params);

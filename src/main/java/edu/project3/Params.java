@@ -1,24 +1,36 @@
 package edu.project3;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 public class Params {
     private final List<String> listOfPaths;
-    private final Map<String, String> otherParams;
+
+    private String from;
+
+    private String to;
+
+    private String format;
 
     private final static String FROM = "--from";
     private final static String TO = "--to";
     private final static String FORMAT = "--format";
 
-    public List<String> getListOfPaths() {
-        return listOfPaths;
+    public String getFrom() {
+        return from;
     }
 
-    public Map<String, String> getOtherParams() {
-        return otherParams;
+    public String getTo() {
+        return to;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public List<String> getListOfPaths() {
+        return listOfPaths;
     }
 
     // строгий порядок: --path (несколько элементов) --from (один элемент) --to (один элемент) --format
@@ -28,7 +40,10 @@ public class Params {
 
         try {
             listOfPaths = new ArrayList<>();
-            otherParams = new HashMap<>();
+
+            if (!Objects.equals(args[0], "--path")) {
+                throw new RuntimeException("Неправильный формат параметров");
+            }
 
             int i = 1;
             while (i < args.length && !mayBeParams.contains(args[i])) {
@@ -38,10 +53,19 @@ public class Params {
 
             while (i < args.length) {
                 switch (args[i]) {
-                    case FROM -> otherParams.put(FROM, args[++i]);
-                    case TO -> otherParams.put(TO, args[++i]);
-                    case FORMAT -> otherParams.put(FORMAT, args[++i]);
-                    default -> {
+                    case FROM: {
+                        from = args[++i];
+                        break;
+                    }
+                    case TO: {
+                        to = args[++i];
+                        break;
+                    }
+                    case FORMAT: {
+                        format = args[++i];
+                        break;
+                    }
+                    default: {
                         break;
                     }
                 }

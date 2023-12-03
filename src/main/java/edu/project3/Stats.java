@@ -42,20 +42,20 @@ public class Stats {
         List<LogRecord> listOfLogRecords = logRecordStream.sorted().toList();
         listOfFiles = parameters.getListOfPaths();
 
-        if (!parameters.getOtherParams().containsKey(FROM)) {
+        if (parameters.getFrom() == null) {
             fromDate = listOfLogRecords.get(0).getTime();
         } else {
             fromDate = OffsetDateTime.parse(
-                parameters.getOtherParams().getOrDefault(FROM, "-") + "T00:00:00+00:00",
+                parameters.getFrom() + "T00:00:00+00:00",
                 DateTimeFormatter.ISO_OFFSET_DATE_TIME
             );
         }
 
-        if (!parameters.getOtherParams().containsKey(TO)) {
+        if (parameters.getTo() == null) {
             toDate = listOfLogRecords.get(listOfLogRecords.size() - 1).getTime();
         } else {
             toDate = OffsetDateTime.parse(
-                parameters.getOtherParams().getOrDefault(TO, "-") + "T23:59:59+00:00",
+                parameters.getTo() + "T23:59:59+00:00",
                 DateTimeFormatter.ISO_OFFSET_DATE_TIME
             );
         }

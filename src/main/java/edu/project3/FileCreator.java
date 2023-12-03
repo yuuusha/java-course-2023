@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public final class FileCreator {
@@ -23,9 +24,7 @@ public final class FileCreator {
     }
 
     public static void fileCreate(Stats stats, Params params) {
-        String format = "--format";
-        if (params.getOtherParams().containsKey(format)
-            && params.getOtherParams().get(format).equals("adoc")) {
+        if (Objects.equals(params.getFormat(), "adoc")) {
             createAdoc(stats);
         } else {
             createMarkdown(stats);
@@ -34,7 +33,7 @@ public final class FileCreator {
 
     private static void createMarkdown(Stats stats) {
         String text = toMarkdown(stats);
-        Path filePath = Paths.get("src/main/java/edu/project3/reports/log_report.md");
+        Path filePath = Paths.get("src/main/resources/project3/reports/log_report.md");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toString()))) {
             writer.write(text);
         } catch (IOException e) {
@@ -137,7 +136,7 @@ public final class FileCreator {
 
     private static void createAdoc(Stats stats) {
         String text = toAdoc(stats);
-        Path filePath = Paths.get("src/main/java/edu/project3/reports/log_report.adoc");
+        Path filePath = Paths.get("src/main/resources/project3/reports/log_report.adoc");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toString()))) {
             writer.write(text);
         } catch (IOException e) {
