@@ -1,5 +1,5 @@
-![Build Status](https://github.com/sanyarnd/java-course-2023/actions/workflows/build.yml/badge.svg)
+Репозиторий содержит выполненные задания для курса Backend-разработка на Java на платформе Тинькофф Образования:
 
-Домашние задания курса https://fintech.tinkoff.ru/academy/java
+https://fintech.tinkoff.ru/academy/java
 
-Студент: `Диев Илья Николаевич`
+Студент: `Диев Илья`
